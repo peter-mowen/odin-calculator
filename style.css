@@ -4,3 +4,48 @@
   color: #dc793e;
   background-color: black;
 }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator-body {
+  min-width: auto;
+  border: solid thick;
+}
+
+.display {
+  margin: 10px;
+  padding: 20px;
+  border: solid thin;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.display-text {
+  font-size: large;
+}
+
+.numpad {
+  margin: 0 10px 10px 10px;
+}
+
+.calculator-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.calculator-button {
+  min-width: 3em;
+  min-height: auto;
+  aspect-ratio: 1/1;
+  font-size: large;
+  font-weight: bold;
+  margin: 2px;
+  border: solid thin;
+}

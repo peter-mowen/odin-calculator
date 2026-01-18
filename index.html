@@ -10,34 +10,39 @@
 <body>
   <div class="calculator-body">
     <div class="display">
-      <span>55378008</span>
+      <span class="display-text">55378008</span>
     </div>
     <div class="numpad">
-      <!-- first row -->
-      <button class="key" data-type="clear" data-value="clear">AC</button>
-      <button class="key"></button>
-      <button class="key"></button>
-      <button class="key" data-type="operator" data-value="/">&divide;</button>
-      <!-- second row -->
-      <button class="key" data-type="number" data-value="7">7</button>
-      <button class="key" data-type="number" data-value="8">8</button>
-      <button class="key" data-type="number" data-value="8">8</button>
-      <button class="key" data-type="operator" data-value="*">&times;</button>
-      <!-- third row -->
-      <button class="key" data-type="number" data-value="4">4</button>
-      <button class="key" data-type="number" data-value="5">5</button>
-      <button class="key" data-type="number" data-value="6">6</button>
-      <button class="key" data-type="operator" data-value="-">&minus;</button>
-      <!-- fourth row -->
-      <button class="key" data-type="number" data-value="1">1</button>
-      <button class="key" data-type="number" data-value="2">2</button>
-      <button class="key" data-type="number" data-value="3">3</button>
-      <button class="key" data-type="operator" data-value="+">&plus;</button>
-      <!-- fifth row -->
-      <button class="key"></button> <!-- placeholder for decimal point -->
-      <button class="key" data-type="number" data-value="0">0</button>
-      <button class="key"></button> <!-- placeholder +/- -->
-      <button class="key" data-type="equals" data-value="=">&equals;</button>
+      <div class="calculator-row">
+        <button class="calculator-button" data-type="clear" data-value="clear">AC</button>
+        <button class="calculator-button" disabled></button>
+        <button class="calculator-button" disabled></button>
+        <button class="calculator-button" data-type="operator" data-value="/">&divide;</button>
+      </div>
+      <div class="calculator-row">
+        <button class="calculator-button" data-type="number" data-value="7">7</button>
+        <button class="calculator-button" data-type="number" data-value="8">8</button>
+        <button class="calculator-button" data-type="number" data-value="8">8</button>
+        <button class="calculator-button" data-type="operator" data-value="*">&times;</button>
+      </div>
+      <div class="calculator-row">
+        <button class="calculator-button" data-type="number" data-value="4">4</button>
+        <button class="calculator-button" data-type="number" data-value="5">5</button>
+        <button class="calculator-button" data-type="number" data-value="6">6</button>
+        <button class="calculator-button" data-type="operator" data-value="-">&minus;</button>
+      </div>
+      <div class="calculator-row">
+        <button class="calculator-button" data-type="number" data-value="1">1</button>
+        <button class="calculator-button" data-type="number" data-value="2">2</button>
+        <button class="calculator-button" data-type="number" data-value="3">3</button>
+        <button class="calculator-button" data-type="operator" data-value="+">&plus;</button>
+      </div>
+      <div class="calculator-row">
+        <button class="calculator-button" disabled></button> <!-- placeholder for decimal point -->
+        <button class="calculator-button" data-type="number" data-value="0">0</button>
+        <button class="calculator-button" disabled></button> <!-- placeholder +/- -->
+        <button class="calculator-button" data-type="equals" data-value="=">&equals;</button>
+      </div>
     </div>
   </div>
 </body>
