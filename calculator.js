@@ -22,3 +22,22 @@ let calculator = {
     }
   }
 }
+
+let numpad = document.querySelector(".numpad");
+
+numpad.addEventListener('click', (event) => {
+  switch(event.target.dataset.type) {
+    case "clear":
+      console.log("got clear");
+      break;
+    case "number":
+      console.log(`${event.target.dataset.value} button pressed`);
+      break;
+    case "operator":
+      console.log(`${event.target.dataset.value} operator selected`);
+      break;
+    case "equals":
+      console.log(`equals received`);
+      break;
+  }
+});
