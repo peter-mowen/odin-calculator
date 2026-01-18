@@ -3,6 +3,8 @@ let calculator = {
   term2: NaN,
   operator: "",
 
+  startNewNumber: true,
+
   displayText: document.querySelector(".display-text"),
 
   operate: function() {
@@ -31,11 +33,16 @@ let calculator = {
     term2 = 0;
   },
 
+  writeNumberToDisplay: function (number) {
+    this.displayText.textContent = number;
+  },
+
   updateNumberOnDisplay(digit) {
-    if ("0" != this.displayText.textContent) {
-      this.displayText.textContent = this.displayText.textContent.concat(digit);
-    } else {
+    if (this.startNewNumber) {
+      this.startNewNumber = false;
       this.displayText.textContent = digit;
+    } else {
+      this.writeNumberToDisplay(this.displayText.textContent.concat(digit));
     }
   }
 }
@@ -52,9 +59,16 @@ numpad.addEventListener('click', (event) => {
       break;
     case "operator":
       console.log(`${event.target.dataset.value} operator selected`);
+      calculator.term1 = Number(calculator.displayText.textContent);
+      calculator.startNewNumber = true;
+      calculator.operator = event.target.dataset.value;
       break;
     case "equals":
       console.log(`equals received`);
+      calculator.term2 = Number(calculator.displayText.textContent);
+      let results = calculator.operate();
+      calculator.writeNumberToDisplay(results);
+      calculator.startNewNumber = true;
       break;
   }
 });
