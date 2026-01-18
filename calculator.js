@@ -1,7 +1,10 @@
 let calculator = {
-  term1: 0,
-  term2: 0,
+  term1: NaN,
+  term2: NaN,
   operator: "",
+
+  displayText: document.querySelector(".display-text"),
+
   operate: function() {
     switch (this.operator) {
       case "+":
@@ -21,11 +24,19 @@ let calculator = {
         return undefined;
     }
   },
+
   clearDisplay: function() {
-    let displayText = document.querySelector(".display-text");
-    displayText.textContent = 0;
+    this.displayText.textContent = 0;
     term1 = 0;
     term2 = 0;
+  },
+
+  updateNumberOnDisplay(digit) {
+    if ("0" != this.displayText.textContent) {
+      this.displayText.textContent = this.displayText.textContent.concat(digit);
+    } else {
+      this.displayText.textContent = digit;
+    }
   }
 }
 
@@ -37,7 +48,7 @@ numpad.addEventListener('click', (event) => {
       calculator.clearDisplay();
       break;
     case "number":
-      console.log(`${event.target.dataset.value} button pressed`);
+      calculator.updateNumberOnDisplay(event.target.dataset.value);
       break;
     case "operator":
       console.log(`${event.target.dataset.value} operator selected`);
