@@ -29,8 +29,9 @@ let calculator = {
 
   clearDisplay: function() {
     this.displayText.textContent = 0;
-    term1 = 0;
-    term2 = 0;
+    this.term1 = 0;
+    this.term2 = 0;
+    this.startNewNumber = true;
   },
 
   writeNumberToDisplay: function (number) {
