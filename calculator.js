@@ -1,6 +1,6 @@
 let calculator = {
-  term1: NaN,
-  term2: NaN,
+  term1: 0,
+  term2: 0,
   operator: "",
 
   startNewNumber: true,
