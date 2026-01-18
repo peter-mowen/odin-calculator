@@ -1,6 +1,6 @@
 let calculator = {
   term1: 0,
-  term2: 0,
+  term2: null,
   operator: "",
 
   startNewNumber: true,
@@ -30,7 +30,7 @@ let calculator = {
   clearDisplay: function() {
     this.displayText.textContent = 0;
     this.term1 = 0;
-    this.term2 = 0;
+    this.term2 = null;
     this.startNewNumber = true;
   },
 
@@ -66,10 +66,13 @@ numpad.addEventListener('click', (event) => {
       break;
     case "equals":
       console.log(`equals received`);
-      calculator.term2 = Number(calculator.displayText.textContent);
+      if (calculator.term2 === null) {
+        calculator.term2 = Number(calculator.displayText.textContent);
+      }
       let results = calculator.operate();
       calculator.writeNumberToDisplay(results);
       calculator.startNewNumber = true;
+      calculator.term1 = results;
       break;
   }
 });
