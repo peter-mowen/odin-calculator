@@ -87,7 +87,11 @@ let calculator = {
         result = term1 - term2;
         break;
       case "/":
-        result = term1 / term2;
+        if (term2) {
+          result = term1 / term2;
+        } else {
+          result = NaN;
+        }
         break;
       case "*":
         result = term1 * term2;
