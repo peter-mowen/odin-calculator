@@ -10,22 +10,71 @@ let calculator = {
     this.displayedNumber = Number(this.displayTextElement.textContent);
   },
 
-  clearAll: function() {
-    this.displayTextElement.textContent = 0;
+  updateDisplayedNumber: function(newNumber) {
+    this.displayTextElement.textContent = newNumber;
     this.displayedNumber = Number(this.displayTextElement.textContent);
+  },
+
+  clearAll: function() {
+    this.updateDisplayedNumber(0);
     this.lastNumberSeen = null;
     this.lastOperator = null;
+    this.currentOperator = null;
     this.startNewNumber = true;
   },
 
   processNumberKeyPress: function(digit) {
     if (this.startNewNumber) {
-      this.displayTextElement.textContent = digit;
+      this.updateDisplayedNumber(digit);
       this.startNewNumber = false;
     } else {
-      this.displayTextElement.textContent = this.displayTextElement.textContent.concat(digit);
+      this.updateDisplayedNumber(this.displayTextElement.textContent.concat(digit));
     }
-    this.displayedNumber = Number(this.displayTextElement.textContent);
+  },
+
+  processOperatorKeyPress: function(operator) {
+    this.lastNumberSeen = this.displayedNumber;
+    this.currentOperator = operator;
+    this.lastOperator = null;
+    this.startNewNumber = true;
+  },
+  
+  processEqualKeyPress: function() {
+    let result;
+
+    // If there is a current operator, then the user just pressed an operator
+    // button
+    if (this.currentOperator) {
+      result = this.performOperation(this.currentOperator);
+
+      // save the last number that was on the screen and the last operator that
+      // was pressed in case the user presses equal again.
+      this.lastNumberSeen = Number(this.displayTextElement.textContent);
+      this.lastOperator = this.currentOperator;
+    } else if (this.lastOperator) {
+      // Otherwise, perform operation using the last operator, the last number
+      // that was entered, and the current number on the screen
+      result = this.performOperation(this.lastOperator);
+    }
+
+    // update the display if there is a result
+    if (result) {
+      this.updateDisplayedNumber(result);
+    }
+    // setup so the user can enter a new number and new operation
+    this.startNewNumber = true;
+    this.currentOperator = null;
+  },
+
+  performOperation: function(operator) {
+    let result = null;
+    switch (operator) {
+      case "+" :
+        result = this.displayedNumber + this.lastNumberSeen;
+        break;
+    }
+    console.log(`${this.displayedNumber} ${operator} ${this.lastNumberSeen} = ${result}`);
+    return result;
   }
 }
 
@@ -45,9 +94,11 @@ numpad.addEventListener('click', (event) => {
       break;
     case "operator":
       console.log(`${event.target.dataset.value} operator selected`);
+      calculator.processOperatorKeyPress(event.target.dataset.value);
       break;
     case "equals":
       console.log(`equals`);
+      calculator.processEqualKeyPress();
       break;
   }
 });
