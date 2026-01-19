@@ -28,7 +28,9 @@ let calculator = {
       this.updateDisplayedNumber(digit);
       this.startNewNumber = false;
     } else {
-      this.updateDisplayedNumber(this.displayTextElement.textContent.concat(digit));
+      if (this.displayedNumber != 0) {
+        this.updateDisplayedNumber(this.displayTextElement.textContent.concat(digit));
+      }
     }
   },
 
