@@ -37,7 +37,7 @@ let calculator = {
     this.lastOperator = null;
 
     // There is a pending current operator. Go ahead and perform it
-    if (this.currentOperator) {
+    if (this.currentOperator && !this.startNewNumber) {
       let result = this.performOperation(this.lastNumberSeen, this.displayedNumber, this.currentOperator);
       this.updateDisplayedNumber(result);
     }
