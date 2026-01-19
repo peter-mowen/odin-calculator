@@ -50,7 +50,8 @@ let calculator = {
       this.startNewNumber = false;
     } else {
       if (this.displayedNumber != 0) {
-        this.updateDisplayedNumber(this.displayTextElement.textContent.concat(digit));
+        this.updateDisplayedNumber(
+          this.displayTextElement.textContent.concat(digit));
       }
     }
   },
@@ -61,7 +62,8 @@ let calculator = {
 
     // There is a pending current operator. Go ahead and perform it
     if (this.currentOperator && !this.startNewNumber) {
-      let result = this.performOperation(this.lastNumberSeen, this.displayedNumber, this.currentOperator);
+      let result = this.performOperation(
+        this.lastNumberSeen, this.displayedNumber, this.currentOperator);
       this.updateDisplayedNumber(result);
     }
 
@@ -79,7 +81,8 @@ let calculator = {
     // If there is a current operator, then the user just pressed an operator
     // button
     if (this.currentOperator) {
-      result = this.performOperation(this.lastNumberSeen, this.displayedNumber, this.currentOperator);
+      result = this.performOperation(
+        this.lastNumberSeen, this.displayedNumber, this.currentOperator);
 
       // save the last number that was on the screen and the last operator that
       // was pressed in case the user presses equal again.
@@ -89,7 +92,8 @@ let calculator = {
     } else if (this.lastOperator) {
       // Otherwise, perform operation using the last operator, the last number
       // that was entered, and the current number on the screen
-      result = this.performOperation(this.displayedNumber, this.lastNumberSeen, this.lastOperator);
+      result = this.performOperation(
+        this.displayedNumber, this.lastNumberSeen, this.lastOperator);
     }
 
     // update the display if there is a result
