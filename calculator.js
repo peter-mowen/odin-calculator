@@ -33,6 +33,13 @@ let calculator = {
   },
 
   processOperatorKeyPress: function(operator) {
+    // There is a pending current operator. Go ahead and perform it
+    if (this.currentOperator) {
+      let result = this.performOperation(this.lastNumberSeen, this.displayedNumber, this.currentOperator);
+      this.updateDisplayedNumber(result);
+    }
+
+    // now go ahead and setup for the new operation
     this.lastNumberSeen = this.displayedNumber;
     this.currentOperator = operator;
     this.lastOperator = null;
@@ -40,7 +47,7 @@ let calculator = {
   },
   
   processEqualKeyPress: function() {
-    let result;
+    let result = null;
 
     // If there is a current operator, then the user just pressed an operator
     // button
@@ -58,7 +65,7 @@ let calculator = {
     }
 
     // update the display if there is a result
-    if (result) {
+    if (result !== null) {
       this.updateDisplayedNumber(result);
     }
     // setup so the user can enter a new number and new operation
@@ -74,6 +81,12 @@ let calculator = {
         break;
       case "-":
         result = term1 - term2;
+        break;
+      case "/":
+        result = term1 / term2;
+        break;
+      case "*":
+        result = term1 * term2;
         break;
     }
     console.log(`${term1} ${operator} ${term2} = ${result}`);
