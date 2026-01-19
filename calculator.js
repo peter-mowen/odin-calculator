@@ -1,4 +1,4 @@
-const MAX_DIGITS = 15;
+const MAX_DIGITS = 12;
 
 let calculator = {
   displayTextElement: null,
@@ -50,8 +50,10 @@ let calculator = {
       this.startNewNumber = false;
     } else {
       if (this.displayedNumber != 0) {
-        this.updateDisplayedNumber(
-          this.displayTextElement.textContent.concat(digit));
+        if (this.displayTextElement.textContent.length < MAX_DIGITS) {
+          this.updateDisplayedNumber(
+            this.displayTextElement.textContent.concat(digit));
+        }
       }
     }
   },
