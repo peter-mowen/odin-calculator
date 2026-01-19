@@ -45,7 +45,7 @@ let calculator = {
     // If there is a current operator, then the user just pressed an operator
     // button
     if (this.currentOperator) {
-      result = this.performOperation(this.currentOperator);
+      result = this.performOperation(this.lastNumberSeen, this.displayedNumber, this.currentOperator);
 
       // save the last number that was on the screen and the last operator that
       // was pressed in case the user presses equal again.
@@ -54,7 +54,7 @@ let calculator = {
     } else if (this.lastOperator) {
       // Otherwise, perform operation using the last operator, the last number
       // that was entered, and the current number on the screen
-      result = this.performOperation(this.lastOperator);
+      result = this.performOperation(this.displayedNumber, this.lastNumberSeen, this.lastOperator);
     }
 
     // update the display if there is a result
@@ -66,14 +66,17 @@ let calculator = {
     this.currentOperator = null;
   },
 
-  performOperation: function(operator) {
+  performOperation: function(term1, term2, operator) {
     let result = null;
     switch (operator) {
       case "+" :
-        result = this.displayedNumber + this.lastNumberSeen;
+        result = term1 + term2;
+        break;
+      case "-":
+        result = term1 - term2;
         break;
     }
-    console.log(`${this.displayedNumber} ${operator} ${this.lastNumberSeen} = ${result}`);
+    console.log(`${term1} ${operator} ${term2} = ${result}`);
     return result;
   }
 }
