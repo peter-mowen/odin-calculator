@@ -1,3 +1,5 @@
+const MAX_DIGITS = 15;
+
 let calculator = {
   displayTextElement: null,
   displayedNumber: null,
@@ -11,8 +13,27 @@ let calculator = {
   },
 
   updateDisplayedNumber: function(newNumber) {
-    this.displayTextElement.textContent = newNumber;
-    this.displayedNumber = Number(this.displayTextElement.textContent);
+    // Save this as a number with full precision
+    this.displayedNumber = Number(newNumber);
+
+    // Write this to the display, rounding it if it doesn't fit.
+    if (newNumber.toString().length > MAX_DIGITS) {
+      if (newNumber < 1 && newNumber > 0) {
+        // the leading zero isn't counted in toPrecision's calculation for the 
+        // number of digits, so numbers between 0 and 1 will show 17 characters
+        // instead of 16 (the 0, the decimal point, and the number of digits)
+        this.displayTextElement.textContent =
+          Number(newNumber).toPrecision(MAX_DIGITS-1);
+      } else {
+        // since there is no leading zero, all numbers count towards the
+        // precision. This means the number of characters that will be displayed
+        // is 16 (15 digits and the decimal point)
+        this.displayTextElement.textContent =
+          Number(newNumber).toPrecision(MAX_DIGITS);
+      }
+    } else {
+      this.displayTextElement.textContent = newNumber;
+    }
   },
 
   clearAll: function() {
