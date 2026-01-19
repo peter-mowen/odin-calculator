@@ -1,8 +1,11 @@
+:root {
+  --primary-text-color: #dc793e;
+  --primary-bg-color: black;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'Courier New', Courier, monospace;
-  color: #dc793e;
-  background-color: black;
 }
 
 body {
@@ -10,6 +13,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: var(--primary-text-color);
+  background-color: var(--primary-bg-color);
+}
+
+button {
+  color: var(--primary-text-color);
+  background-color: var(--primary-bg-color);
 }
 
 h1 {
@@ -29,10 +39,12 @@ h1 {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  overflow: hidden;
 }
 
 .display-text {
   font-size: large;
+  white-space: nowrap;
 }
 
 .numpad {
