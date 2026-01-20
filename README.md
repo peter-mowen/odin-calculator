@@ -1,4 +1,4 @@
-# Project: Etch-a-Sketch
+# Project: Calculator
 
 This is my implementation of the
 ["Project: Calculator"](https://www.theodinproject.com/lessons/foundations-calculator)
