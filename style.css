@@ -27,7 +27,7 @@ h1 {
 }
 
 .calculator-body {
-  min-width: auto;
+  width: 262px;
   border: solid thick;
 }
 
